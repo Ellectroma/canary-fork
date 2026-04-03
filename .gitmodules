@@ -1,3 +1,9 @@
 [submodule "data"]
 	path = data
 	url = git@github.com:ellectroma/tibianitos_server_data.git
+[submodule "data-otservbr-global"]
+	path = data-otservbr-global
+	url = git@github.com:ellectroma/tibianitos_server_data.git
+[submodule "data-canary"]
+	path = data-canary
+	url = git@github.com:ellectroma/tibianitos_server_data.git
