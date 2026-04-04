@@ -1238,6 +1238,9 @@ ItemAttribute_t stringToItemAttribute(const std::string &str) {
 	if (str == "extradefense") {
 		return ItemAttribute_t::EXTRADEFENSE;
 	}
+	if (str == "element") {
+		return ItemAttribute_t::ELEMENT;
+	}
 	if (str == "armor") {
 		return ItemAttribute_t::ARMOR;
 	}

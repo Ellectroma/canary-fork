@@ -25,6 +25,7 @@ public:
 			case ItemAttribute_t::MANTRA:
 			case ItemAttribute_t::DEFENSE:
 			case ItemAttribute_t::EXTRADEFENSE:
+			case ItemAttribute_t::ELEMENT:
 			case ItemAttribute_t::ARMOR:
 			case ItemAttribute_t::HITCHANCE:
 			case ItemAttribute_t::SHOOTRANGE:

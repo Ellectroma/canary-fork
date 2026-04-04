@@ -246,6 +246,7 @@ enum AttrTypes_t {
 	ATTR_OWNER = 43,
 	ATTR_OBTAINCONTAINER = 44,
 	ATTR_MANTRA = 45,
+	ATTR_ELEMENT = 46,
 
 	// Always the last
 	ATTR_NONE = 0
