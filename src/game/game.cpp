@@ -4581,8 +4581,7 @@ void Game::playerSetShowOffSocket(uint32_t playerId, Outfit_t &outfit, const Pos
 		item->setCustomAttribute("LookLegs", static_cast<int64_t>(outfit.lookLegs));
 		item->setCustomAttribute("LookFeet", static_cast<int64_t>(outfit.lookFeet));
 		item->setCustomAttribute("LookAddons", static_cast<int64_t>(outfit.lookAddons));
-	} else if (auto pastLookType = item->getCustomAttribute("PastLookType");
-	           pastLookType && pastLookType->getInteger() > 0) {
+	} else if (auto pastLookType = item->getCustomAttribute("PastLookType"); pastLookType && pastLookType->getInteger() > 0) {
 		item->removeCustomAttribute("LookType");
 		item->removeCustomAttribute("PastLookType");
 	}
@@ -4593,8 +4592,7 @@ void Game::playerSetShowOffSocket(uint32_t playerId, Outfit_t &outfit, const Pos
 		item->setCustomAttribute("LookMountBody", static_cast<int64_t>(outfit.lookMountBody));
 		item->setCustomAttribute("LookMountLegs", static_cast<int64_t>(outfit.lookMountLegs));
 		item->setCustomAttribute("LookMountFeet", static_cast<int64_t>(outfit.lookMountFeet));
-	} else if (auto pastLookMount = item->getCustomAttribute("PastLookMount");
-	           pastLookMount && pastLookMount->getInteger() > 0) {
+	} else if (auto pastLookMount = item->getCustomAttribute("PastLookMount"); pastLookMount && pastLookMount->getInteger() > 0) {
 		item->removeCustomAttribute("LookMount");
 		item->removeCustomAttribute("PastLookMount");
 	}
@@ -6422,18 +6420,19 @@ void Game::playerChangeOutfit(uint32_t playerId, Outfit_t outfit, bool setMount,
 
 		if (!g_configManager().getBoolean(TOGGLE_MOUNT_IN_PZ) && playerTile->hasFlag(TILESTATE_PROTECTIONZONE)) {
 			outfit.lookMount = 0;
-		}
-
-		auto deltaSpeedChange = mount->speed;
-		if (player->isMounted()) {
-			const auto prevMount = mounts->getMountByID(player->getLastMount());
-			if (prevMount) {
-				deltaSpeedChange -= prevMount->speed;
+		} else {
+			auto deltaSpeedChange = mount->speed;
+			if (player->isMounted()) {
+				const auto prevMount = mounts->getMountByID(player->getLastMount());
+				if (prevMount) {
+					deltaSpeedChange -= prevMount->speed;
+				}
 			}
+
+			player->setCurrentMount(mount->id);
+			changeSpeed(player, deltaSpeedChange);
 		}
 
-		player->setCurrentMount(mount->id);
-		changeSpeed(player, deltaSpeedChange);
 	} else if (player->isMounted()) {
 		player->dismount();
 	}
